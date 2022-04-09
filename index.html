@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./Logic.js" type="module"></script>
+    <script type="module">
+        import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+    </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <button id="button">Populate</button>
+    <div>
+        <h2>Part 1 - Find top 5 committers ranked by count and their number of commits<h2>
+        <h3 id="part1">Initial</h3>
+    </div>
+        <div>
+        <h2>Part 2 - Determine the committer with the longest commit streak.<h2>
+        <h3 id="part2">Initial</h3>
+    </div>
+</div>
+    <h2>Part 3 - Generate a heatmap of number of commits count by all users by day of the week and by 3 hour blocks.<h2>
+    <div id="plot"></div>
+</div>
+
+</body>
+</html>
