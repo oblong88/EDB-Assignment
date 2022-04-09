@@ -1,4 +1,5 @@
 import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+import token from './config.js'
 let period = 6; //* period in months
 let date = new Date()
 date.setMonth(date.getMonth() - period);
@@ -14,7 +15,7 @@ const Logic = async () => {
     let perPage = 100; //* max 100
     let stopped = false; //* control while loop
 
-    const octokit = new Octokit({ auth: `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` }); //* github personal access token
+    const octokit = new Octokit({ auth: `${token}` }); //* github personal access token
 
     // const response =  await octokit.request('GET /repos/{owner}/{repo}/commits', {
     //             owner: 'apache',
