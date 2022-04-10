@@ -14,6 +14,6 @@ Time period to check can be adjusted in code block itself. At the moment only ab
 
 # TODO
 Change code to accept more specific time period
-Add form to front end for time period
-styling?
-refactor code, some chunks can be simplified
+1. Add form to front end for time period
+2. styling?
+3. refactor code, some chunks can be simplified
