@@ -44,7 +44,7 @@ const Logic = async () => {
         }
     }
     console.log(base)
-    let authors = []; //* this array is the authors for each commit
+    let authors = []; //* this array is all the authors
     for (let i=0;i<base.length;i++){
         base[i].map((obj)=>{
             // console.log(obj.commit.author.name)
@@ -56,13 +56,13 @@ const Logic = async () => {
     
     //! Part 1 - Find top 5 committers ranked by count and their number of commits
     let authorCount = []; //* [[author, count],[author, count]]
-    let arrCommitCount = [];
+    let arrCommitCount = []; //* [count, count] same layout as authorCount just without the author, easier to do math operations
     for (let i=0;i<authors.length;i++){
-        if(authorCount.find(arr => arr[0] === authors[i])){
+        if(authorCount.find(arr => arr[0] === authors[i])){ //* if authorCount has entry with same name as author[i], find index of entry and increase authorCount and arrCommitCount
             let index = authorCount.findIndex(arr => arr[0] === authors[i]);
             authorCount[index][1] += 1;
             arrCommitCount[index] += 1;
-        } else {
+        } else { //* if not push new entry into both arrays
             authorCount.push([authors[i], 1])
             arrCommitCount.push(1)
         }
@@ -72,20 +72,20 @@ const Logic = async () => {
     let highestCounts = [];
 
     function findHighestCounts(arrCommitCount){
-        let max = Math.max(...arrCommitCount);
-        let index = arrCommitCount.findIndex(elem => elem === max);
+        let max = Math.max(...arrCommitCount); //* find max
+        let index = arrCommitCount.findIndex(elem => elem === max); //* find index of max
         // console.log(index)
         highestCounts.push(arrCommitCount.slice(index, index+1)); //* slice out and put in highestCounts array
         arrCommitCount.splice(index, 1, 0); //* splice and replace with 0 to avoid pulling same data
 
-        if (highestCounts.length !== 5){
+        if (highestCounts.length !== 5){ //* repeat until array has 5 entries, could refactor to include dupes for 5th highest. 
             return findHighestCounts(arrCommitCount)
         }
         return highestCounts
     }
     let filtered = findHighestCounts(arrCommitCount).flat();
     let filteredAuthorAndCount = [];
-    //* link back to authorCount array and display 5 highest
+    //! link back to authorCount array and display 5 highest -> can actually just use code above since index will be same
     for (let i = 0; i<filtered.length;i++){
         let index = authorCount.findIndex(elem => elem[1] === filtered[i])
         // console.log(index)
@@ -114,11 +114,11 @@ const Logic = async () => {
                 streak += 1;
                 committer = authors[i];
             } else {
-                if(prevStreak < streak){
+                if(prevStreak < streak){ //* if current streak more than prev streak, update prev streak and committer
                     prevStreak = streak;
                     prevCommitter = committer;
                 } else {
-                    streak = 1;
+                    streak = 1; //* if prev streak more then set streak to 1. 
                 }
             }
         }
